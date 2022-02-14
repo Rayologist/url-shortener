@@ -1,0 +1,10 @@
+BEGIN;
+
+CREATE TABLE shortener (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    long_url TEXT NOT NULL, 
+    short_url TEXT NOT NULL,
+    ttl TIMESTAMP NOT NULL
+)
+
+COMMIT;
