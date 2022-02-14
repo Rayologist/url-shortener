@@ -1,0 +1,26 @@
+{
+  "name": "dcard-url-shortener",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".",
+  "type": "module",
+  "scripts": {
+    "start": "npx kill-port 80 && nodemon src/server.js",
+    "test": "npx kill-port 80 && node --experimental-vm-modules node_modules/jest/bin/jest.js --forceExit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "helmet": "^5.0.2",
+    "pg": "^8.7.3",
+    "redis": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2"
+  }
+}
