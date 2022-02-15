@@ -1,4 +1,4 @@
 import redis from "redis";
-const SHORTENERRedisClient = redis.createClient({ legacyMode: true });
-await SHORTENERRedisClient.connect();
-export default SHORTENERRedisClient;
+const REDIS = redis.createClient();
+await REDIS.connect();
+export default REDIS;
