@@ -3,6 +3,7 @@ import { ROOT_URL } from "../constants/constants.js";
 import {
   createShortUrlByLongUrl,
   getLongUrlByShortUrl,
+  deleteShortUrlByShortUrl,
 } from "../services/shortenerService.js";
 
 const handleCreateShortUrl = async (req, res) => {
@@ -27,4 +28,13 @@ const handleRedirectShortUrl = async (req, res) => {
   return res.redirect(302, result[0].long_url);
 };
 
-export { handleCreateShortUrl, handleRedirectShortUrl };
+const handleDeleteShortUrl = async (req, res) => {
+  const { shortUrl } = req.body;
+  await Promise.all([
+    deleteShortUrlByShortUrl(shortUrl),
+    redisDeleteUrl(shortUrl),
+  ]);
+  return res.sendStatus(204);
+};
+
+export { handleCreateShortUrl, handleRedirectShortUrl, handleDeleteShortUrl };

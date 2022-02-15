@@ -33,12 +33,12 @@ async function getShortUrlByLongUrl(longUrl) {
   return result.rows;
 }
 
-async function deleteShortUrlById(id) {
+async function deleteShortUrlByShortUrl(shortUrl) {
   const result = await SHORTENER.query(
     `DELETE FROM shortener
-     WHERE id = $1
+     WHERE short_url = $1
     `,
-    [id]
+    [shortUrl]
   );
   return result.rows;
 }
@@ -47,5 +47,5 @@ export {
   createShortUrlByLongUrl,
   getLongUrlByShortUrl,
   getShortUrlByLongUrl,
-  deleteShortUrlById,
+  deleteShortUrlByShortUrl,
 };
