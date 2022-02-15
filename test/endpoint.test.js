@@ -1,6 +1,6 @@
 import app from "../src/server";
 import request from "supertest";
-import { deleteShortUrlById } from "../src/api/v1/services/shortenerService.js";
+import { redisDeleteUrl } from "../src/api/v1/services/redis/cacheShortener";
 
 describe("POST Endpoints", () => {
   describe("Post /api/v1/urls", () => {
@@ -12,7 +12,10 @@ describe("POST Endpoints", () => {
 
       expect(res.body).toHaveProperty("id");
       expect(res.body).toHaveProperty("shortUrl");
-      await deleteShortUrlById(res.body.id);
+      const deleteRes = await request(app).post("/api/v1/urls/delete").send({
+        shortUrl: res.body.shortUrl,
+      });
+      expect(deleteRes.statusCode).toEqual(204);
     });
 
     it(`should return error {"errors": [{"url": "Invalid URL"}]}`, async () => {
@@ -62,6 +65,36 @@ describe("GET Endpoints", () => {
 
       const getRes = await request(app).get(`/${shortUrl}`);
       expect(getRes.statusCode).toEqual(302);
+      const deleteRes = await request(app).post("/api/v1/urls/delete").send({
+        shortUrl,
+      });
+      expect(deleteRes.statusCode).toEqual(204);
+    });
+
+    it("should redirect to long url given short url", async () => {
+      const NOW = Date.now();
+      const TEN_HOUR = 60 * 60 * 10 * 1000;
+      const expire = new Date(NOW + TEN_HOUR).toISOString();
+      const postRes = await request(app).post("/api/v1/urls").send({
+        url: "https://www.dcard.tw/f",
+        expireAt: expire,
+      });
+
+      expect(postRes.body).toHaveProperty("id");
+      expect(postRes.body).toHaveProperty("shortUrl");
+
+      const shortUrl = new URL(postRes.body.shortUrl).pathname.substring(1);
+
+      await redisDeleteUrl(shortUrl);
+
+      const getRes = await request(app).get(`/${shortUrl}`);
+
+      expect(getRes.statusCode).toEqual(302);
+
+      const deleteRes = await request(app).post("/api/v1/urls/delete").send({
+        shortUrl,
+      });
+      expect(deleteRes.statusCode).toEqual(204);
     });
 
     it("should return 404 not found", async () => {
