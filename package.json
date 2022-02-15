@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "npx kill-port 80 && nodemon src/server.js",
-    "test": "npx kill-port 80 && node --experimental-vm-modules node_modules/jest/bin/jest.js --forceExit"
+    "test": "npx kill-port 80 && node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage --forceExit"
   },
   "keywords": [],
   "author": "",
