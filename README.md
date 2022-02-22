@@ -56,9 +56,9 @@ Reasons why I chose these libs:
 
 ---
 
-## How I implemented an URL shortener
+## How I Implemented an URL Shortener
 
-### 1. Shortened URL length
+### 1. Shortened URL Length
 
 Shortened URL length is important:
 
@@ -81,7 +81,7 @@ Considering the services above, shortened length of `5` will suit this task:
 1. Shortend length of `5` is successfully used in production
 2. We are building a url shortener that does not have large amount of users.
 
-### Dealing with collisions of short URLs
+### Dealing with Collisions of Short URLs
 
 The function `generateShortUrl()` in `src/api/v1/utils/generateShortUrl.js` checks whether the given url is in database.
 
@@ -91,12 +91,12 @@ If it does exist, it will return itself recursively until a non-repeated short u
 
 Redis is used to cache short urls for 86400 seconds, namely one day. If the given expiration time is less than 86400 seconds, the expiration time will be counted in seconds and `SETEX` to Redis.
 
-### Test: `Jest`, `SuperTest`
+### Testing: `Jest` and `SuperTest`
 
 The test coverage of this module is 98.34 %.
 There are two pieces of codes not covered, because one occurs when database fails, and the other occurs when database have a random string that a function generates randomly.
 
-## Repeated Long URLs
+### Repeated Long URLs
 
 If a long url is repeated in database, it will return the result of a short url that has generated previously. However, if the expiration time is modified with the same long url, the expiration time in database will not be updated.
 If we'd like to update expiration time, a new route should be added: `api/v1/urls/update`
