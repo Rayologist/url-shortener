@@ -56,7 +56,7 @@ Reasons why I chose these libs:
 
 ---
 
-## How I implement an URL shortener
+## How I implemented an URL shortener
 
 ### 1. Shortened URL length
 
