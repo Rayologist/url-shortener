@@ -51,6 +51,12 @@ describe("POST Endpoints", () => {
 });
 
 describe("GET Endpoints", () => {
+  describe("GET /", () => {
+    it("should return status code 200", async () => {
+      const res = await request(app).get("/");
+      expect(res.statusCode).toEqual(200);
+    });
+  });
   describe("GET /:shortUrl", () => {
     it("should redirect to long url given short url", async () => {
       const postRes = await request(app).post("/api/v1/urls").send({
