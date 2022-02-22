@@ -15,6 +15,10 @@ app.use(helmet());
 app.use("/api/v1", shortener);
 app.get("/:shortUrl", getCachedUrl, handleRedirectShortUrl);
 
+app.get("/", (req, res) => {
+  return res.sendStatus(200);
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
