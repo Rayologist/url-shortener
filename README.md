@@ -72,7 +72,7 @@ Observing some popular services of URL shortener (Top 5 google search results), 
 
 - 5: ([shorturl.at](https://www.shorturl.at/)): [a-zA-Z0-9] ** 5 => 916,132,832
 
-- 6:([rb.gy](https://free-url-shortener.rb.gy/)): [a-zA-Z0-9] ** 6 => 56,800,235,584
+- 6: ([rb.gy](https://free-url-shortener.rb.gy/)): [a-zA-Z0-9] ** 6 => 56,800,235,584
 
 - 7: ([bit.ly](https://bitly.com/)): [a-zA-Z0-9] ** 7 => 3,521,614,606,208
 
