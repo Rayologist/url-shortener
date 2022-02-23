@@ -64,7 +64,7 @@ Shortened URL length is important:
 
 1. if it is too long, then it loses the meaning to shorten it
 
-2. if it is too short, then it is likely to consume all possible combinations. 
+2. if it is too short, then it is likely to consume all possible combinations.
 
 Observing some popular services of URL shortener (Top 5 google search results), I found the following services and counted possible combinations:
 
