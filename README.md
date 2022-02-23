@@ -76,10 +76,10 @@ Observing some popular services of URL shortener (Top 5 google search results), 
 
 - 7: ([bit.ly](https://bitly.com/)): [a-zA-Z0-9] ** 7 => 3,521,614,606,208
 
-Considering the services above, shortened length of `5` will suit this task:
+Considering the statistics above, shortened length of `5` will suit this task:
 
-1. Shortend length of `5` is successfully used in production
-2. We are building a url shortener that does not have large amount of users.
+1. We are building a small-scale application that is not likely to consume all possible combiantions.
+2. Shortened length of `5` is successfully used in production
 
 ### 2. Dealing with Collisions of Short URLs
 
